@@ -1,4 +1,4 @@
-module moore_machine(
+module unloc_mech_moore(
     input logic clk, rstn, ser_val, ser_data,
     output logic output_val, output_data
 );
