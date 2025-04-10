@@ -1,4 +1,4 @@
-module p2s #(N = 8)
+module p2s #(N = 4)
 
 (   
     input  logic clk, rstn, ser_ready, par_valid,
@@ -7,9 +7,9 @@ module p2s #(N = 8)
 );
 
     localparam N_BITS = $clog2(N);
-    enum logic {RX = 0, TX = 0} next_state, state;
+    enum logic {RX = 0, TX = 1} next_state, state;
     logic [N_BITS - 1 : 0] count;
-    logic [N_BITS - 1 : 0] shift_reg;
+    logic [N - 1 : 0] shift_reg;
 
     always_comb unique case(state)
         RX : next_state = (par_valid)                     ? TX : RX;
