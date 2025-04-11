@@ -11,15 +11,15 @@ module unloc_mech_moore_tb;
 
     
     logic ser_val, ser_data;
-    logic output_val, output_data;
+    logic output_val, output;
 
     
     moore_machine dut(.*);
 
     
     initial begin
-        $monitor("Time=%0t: ser_val=%b ser_data=%b | output_val=%b output_data=%b | state=%s", 
-                $time, ser_val, ser_data, output_val, output_data, dut.state.name());
+        $monitor("Time=%0t: ser_val=%b ser_data=%b | output_val=%b output=%b | state=%s", 
+                $time, ser_val, ser_data, output_val, output, dut.state.name());
     end
 
     

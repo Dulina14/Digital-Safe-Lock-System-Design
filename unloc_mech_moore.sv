@@ -1,6 +1,6 @@
 module moore_machine(
     input logic clk, rstn, ser_val, ser_data,
-    output logic output_val, output_data
+    output logic output_val, output
 );
 
     // State encoding
@@ -81,37 +81,37 @@ module moore_machine(
         case(state)
             IDLE: begin
                 output_val = 0;
-                output_data = 0;
+                output = 0;
             end
             
             STATE_A: begin
                 output_val = 1;
-                output_data = 0;
+                output = 0;
             end
             
             STATE_B: begin
                 output_val = 1;
-                output_data = 0;
+                output = 0;
             end
             
             STATE_C: begin
                 output_val = 1;
-                output_data = 0;
+                output = 0;
             end
             
             STATE_D: begin
                 output_val = 1;
-                output_data = 1;
+                output = 1;
             end
             
             INCORRECT: begin
                 output_val = 1;
-                output_data = 0;
+                output = 0;
             end
             
             default: begin
                 output_val = 0;
-                output_data = 0;
+                output = 0;
             end
         endcase
     end
