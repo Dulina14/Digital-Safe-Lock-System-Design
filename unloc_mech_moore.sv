@@ -1,8 +1,9 @@
-module unloc_mech_moore(
+module moore_machine(
     input logic clk, rstn, ser_val, ser_data,
     output logic output_val, output_data
 );
 
+    // State encoding
     typedef enum logic [2:0] {
         IDLE,       // Idle state
         STATE_A,    // State A 
@@ -56,17 +57,11 @@ module unloc_mech_moore(
             end
             
             STATE_D: begin
-                if (ser_val == 0)
-                    next_state = STATE_D;
-                else if (ser_val == 1 && ser_data == 0 || ser_val == 1 && ser_data == 1)
-                    next_state = IDLE;
+                next_state = IDLE;
             end
             
             INCORRECT: begin
-                if (ser_val == 0)
-                    next_state = INCORRECT;
-                else if (ser_val == 1 && ser_data == 0 || ser_val == 1 && ser_data == 1)
-                    next_state = IDLE;
+                next_state = IDLE;
             end
             
             default: next_state = IDLE;
