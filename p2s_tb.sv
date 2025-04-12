@@ -16,8 +16,8 @@ module p2s_tb;
     p2s #(.N(N)) dut (.*);
 
     initial begin 
-        $dumpfile("p2s_tb.vcd");
-        $dumpvars(0, p2s_tb);
+        $dumpfile("dump.vcd");
+        $dumpvars;
 
         @(posedge clk); #1 rstn <= 0;
         @(posedge clk); #1 rstn <= 1;
@@ -30,7 +30,7 @@ module p2s_tb;
 
         // Test input 2
         #(CLK_PERIOD*10)
-        @(posedge clk); #1 par_data <= 4'b1100; par_valid <= 1;
+        @(posedge clk); #1 par_data <= 4'b1011; par_valid <= 1;
         @(posedge clk); #1 par_valid <= 0;
 
         // Test input 3
