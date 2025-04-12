@@ -1,5 +1,4 @@
-module p2s #(N = 4)
-
+module p2s #(parameter N = 4)
 (   
     input  logic clk, rstn, ser_ready, par_valid,
     input  logic [N-1:0] par_data,
@@ -19,7 +18,7 @@ module p2s #(N = 4)
     always_ff @(posedge clk or negedge rstn) 
         state <= !rstn ? RX : next_state;
 
-    assign ser_data  = shift_reg[0] ;
+  assign ser_data  = shift_reg[N-1];
     assign par_ready = (state == RX);
     assign ser_valid = (state == TX);
 
@@ -31,8 +30,8 @@ module p2s #(N = 4)
                 count     <= 0;
             end
             TX : if (ser_ready) begin
-                shift_reg <= shift_reg >> 1;
-                count     <= count + 1'd1  ;
+                shift_reg <= shift_reg << 1;
+                count     <= count + 1'd1;
             end
         endcase
 endmodule
