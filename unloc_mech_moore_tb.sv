@@ -14,7 +14,7 @@ module unloc_mech_moore_tb;
     logic output_val, output;
 
     
-    moore_machine dut(.*);
+    unloc_mech_moore dut(.*);  
 
     
     initial begin
